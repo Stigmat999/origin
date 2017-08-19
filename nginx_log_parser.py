@@ -18,4 +18,4 @@ for line in nginx_log_file:
         ip_list.append(line_list[0])
         
 print("200 and GET = " + str(success_requests))
-print("Unique ip: " + str(ip_list))
+print("Unique IP-adress: " + str(ip_list))
