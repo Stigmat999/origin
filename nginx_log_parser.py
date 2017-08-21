@@ -17,5 +17,5 @@ for line in nginx_log_file:
     if line_list[0] not in ip_list:
         ip_list.append(line_list[0])
         
-print("200 and GET = " + str(success_requests))
+print("Code 200 and GET = " + str(success_requests))
 print("Unique IP-adress: " + str(ip_list))
