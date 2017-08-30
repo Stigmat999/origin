@@ -1,21 +1,19 @@
-﻿nginx_log_file = open("nginx.log")
+import psycopg2
 
-success_requests = 0
-ip_list = []
+conn = psycopg2.connect(database="rusbd", user="rus", password="111", host="127.0.0.1", port="5432")
+cur = conn.cursor()
+
+nginx_log_file = open("nginx.log")
 
 for line in nginx_log_file:
     line_list = line.split(" ")
 
-    if line_list[8] == "500":
-        code500 = open("code500.txt", "a")
-        code500.write(line)
-        code500.close()
+    query_params = '{}, \'{}\', \'{}\''.format(int(line_list[8]), line_list[0], line_list[5].replace("\"",""))
 
-    if line_list[8] == "200" and line_list[5] == "\"GET":
-        success_requests += 1
+    cur.execute("insert into nginx_log_parser (code, ip, method) \
+        values ({}) ".format(query_params) );
 
-    if line_list[0] not in ip_list:
-        ip_list.append(line_list[0])
-        
-print("Code 200 and GET = " + str(success_requests))
-print("Unique IP-adress: " + str(ip_list))
+
+      
+conn.commit()
+conn.close()
