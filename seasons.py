@@ -15,7 +15,7 @@ def seasons(a):
             print("Зима")
 
     else:
-    	print("Неа =)")
+    	print("Неа!")
 
 seasons(12)
 
