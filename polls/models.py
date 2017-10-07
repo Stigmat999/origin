@@ -5,6 +5,6 @@ from django.db import models
 
 # Create your models here.
 class LogString(models.Model):	
-	ip = models.CharField(max_length=20, default=False)
-	method = models.CharField(max_length=20, default=False)
-	code = models.IntegerField(default=False)
+	ip = models.CharField(max_length=20, default=None)
+	method = models.CharField(max_length=20, default=None)
+	code = models.IntegerField(default=None)
