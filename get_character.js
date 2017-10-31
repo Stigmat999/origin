@@ -29,9 +29,21 @@ function get_img() {
     else {
       var xhr = xhr.responseText;
       xhr = JSON.parse(xhr);
-      var img = [xhr.data.results[0].thumbnail.path + "." + xhr.data.results[0].thumbnail.extension];
+      var img = xhr.data.results[0].thumbnail.path + "." + xhr.data.results[0].thumbnail.extension;
 
       return img;
       }
-    
+
 }
+
+window.onload = function() {
+  var name = get_name();
+  var hero_name = document.getElementById("id1");
+  console.log(name);
+  hero_name.innerHTML = name;
+
+  var image = get_img();
+  var hero_image = document.getElementById("id2");
+  console.log(image);
+  hero_image.src = image;
+};
